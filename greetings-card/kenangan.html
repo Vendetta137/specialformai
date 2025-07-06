@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kenangan Kita</title>
+    <link href="../bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../css/main.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Quicksand:wght@400;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            min-height: 100vh;
+            font-family: 'Poppins', 'Quicksand', Arial, sans-serif;
+            position: relative;
+            overflow-x: hidden;
+            overflow-y: auto;
+            margin: 0;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .floating-icon {
+            position: fixed;
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.2);
+            animation: float 6s ease-in-out infinite;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .floating-icon:nth-child(1) { top: 5%; left: 8%; animation-delay: 0s; }
+        .floating-icon:nth-child(2) { top: 15%; right: 8%; animation-delay: 1s; }
+        .floating-icon:nth-child(3) { bottom: 15%; left: 8%; animation-delay: 2s; }
+        .floating-icon:nth-child(4) { bottom: 5%; right: 8%; animation-delay: 3s; }
+        .floating-icon:nth-child(5) { top: 50%; left: 3%; animation-delay: 4s; }
+        .floating-icon:nth-child(6) { top: 25%; right: 3%; animation-delay: 5s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+        }
+
+        .diary-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px 15px 50px 15px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .diary-header {
+            text-align: center;
+            margin-bottom: 30px;
+            background: linear-gradient(145deg, #ffffff, #f8f9ff);
+            border-radius: 25px;
+            padding: 25px 20px;
+            box-shadow: 0 20px 50px rgba(255, 105, 180, 0.15), 0 8px 25px rgba(0,0,0,0.08), inset 0 1px 0 rgba(255,255,255,0.9);
+            border: 1px solid rgba(255, 182, 193, 0.2);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .diary-header:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 25px 60px rgba(255, 105, 180, 0.2), 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .diary-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #ff69b4, #ff1493, #ff69b4, #ff1493);
+            border-radius: 25px 25px 0 0;
+        }
+
+        .diary-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #c94f7c;
+            margin-bottom: 10px;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 4px rgba(201, 79, 124, 0.1);
+        }
+
+        .diary-subtitle {
+            font-size: 1rem;
+            color: #888;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+
+        .header-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .icon-item {
+            font-size: 1.3rem;
+            color: #ff69b4;
+            animation: bounce 2s ease-in-out infinite;
+            transition: all 0.3s ease;
+        }
+
+        .icon-item:nth-child(1) { animation-delay: 0s; }
+        .icon-item:nth-child(2) { animation-delay: 0.5s; }
+        .icon-item:nth-child(3) { animation-delay: 1s; }
+        .icon-item:nth-child(4) { animation-delay: 1.5s; }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-8px); }
+            60% { transform: translateY(-4px); }
+        }
+
+        .memory-entry {
+            background: linear-gradient(145deg, #ffffff, #f8f9ff);
+            border-radius: 20px;
+            margin-bottom: 25px;
+            box-shadow: 0 15px 40px rgba(255, 105, 180, 0.12), 0 5px 20px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.9);
+            border: 1px solid rgba(255, 182, 193, 0.15);
+            overflow: hidden;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .memory-entry:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 60px rgba(255, 105, 180, 0.18), 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .memory-entry::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #ff69b4, #ff1493, #ff69b4);
+        }
+
+        .entry-date {
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            color: white;
+            padding: 10px 20px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            margin: 0 20px;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+        }
+
+        .entry-content {
+            padding: 25px;
+        }
+
+        .photo-container {
+            position: relative;
+            margin-bottom: 20px;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+        }
+
+        .photo-container:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .placeholder-photo {
+            width: 100%;
+            height: 280px;
+            background: linear-gradient(135deg, #ffe6e6, #ffd6d6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ff69b4;
+            font-size: 3.5rem;
+            border-radius: 18px;
+            transition: all 0.3s ease;
+        }
+
+        .photo-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 50%, rgba(0,0,0,0.4));
+            display: flex;
+            align-items: flex-end;
+            padding: 25px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .photo-container:hover .photo-overlay {
+            opacity: 1;
+        }
+
+        .photo-caption {
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.6);
+            background: rgba(255, 105, 180, 0.8);
+            padding: 8px 15px;
+            border-radius: 20px;
+            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+        }
+
+        .entry-text {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #4a4a4a;
+            text-align: justify;
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        .entry-mood {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 20px;
+            padding: 15px 20px;
+            background: linear-gradient(135deg, rgba(255, 105, 180, 0.05), rgba(255, 20, 147, 0.05));
+            border-radius: 15px;
+            border: 1px solid rgba(255, 105, 180, 0.1);
+        }
+
+        .mood-icon {
+            font-size: 1.4rem;
+            color: #ff69b4;
+            background: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 10px rgba(255, 105, 180, 0.2);
+        }
+
+        .mood-text {
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            gap: 15px;
+        }
+
+        .nav-btn {
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 25px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 3px 12px rgba(255, 105, 180, 0.25);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            -webkit-tap-highlight-color: transparent;
+            min-height: 44px;
+            text-decoration: none;
+        }
+
+        .nav-btn:hover, .nav-btn:active {
+            transform: translateY(-2px) scale(1.02);
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.35);
+        }
+
+        .nav-btn.back {
+            background: linear-gradient(45deg, #888, #666);
+        }
+
+        .nav-btn.back:hover {
+            background: linear-gradient(45deg, #777, #555);
+        }
+
+        @media (min-width: 768px) {
+            .diary-container {
+                padding: 30px 20px 60px 20px;
+            }
+            
+            .diary-header {
+                padding: 35px 30px;
+                margin-bottom: 40px;
+            }
+            
+            .diary-title {
+                font-size: 2.5rem;
+            }
+            
+            .memory-entry {
+                margin-bottom: 35px;
+            }
+            
+            .entry-content {
+                padding: 30px;
+            }
+            
+            .placeholder-photo {
+                height: 320px;
+            }
+            
+            .entry-text {
+                font-size: 1.05rem;
+                line-height: 1.8;
+            }
+            
+            .entry-mood {
+                padding: 18px 25px;
+            }
+            
+            .mood-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1.5rem;
+            }
+            
+            .mood-text {
+                font-size: 1rem;
+            }
+            
+            .navigation-buttons {
+                margin-top: 40px;
+            }
+            
+            .nav-btn {
+                padding: 15px 30px;
+                font-size: 1rem;
+                border-radius: 50px;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .diary-container {
+                max-width: 900px;
+                padding: 40px 30px 70px 30px;
+            }
+            
+            .memory-entry {
+                margin-bottom: 40px;
+            }
+            
+            .entry-content {
+                padding: 35px;
+            }
+            
+            .placeholder-photo {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating background icons -->
+    <div class="floating-icon"><i class="fas fa-heart"></i></div>
+    <div class="floating-icon"><i class="fas fa-camera"></i></div>
+    <div class="floating-icon"><i class="fas fa-star"></i></div>
+    <div class="floating-icon"><i class="fas fa-book-open"></i></div>
+    <div class="floating-icon"><i class="fas fa-magic"></i></div>
+    <div class="floating-icon"><i class="fas fa-sparkles"></i></div>
+
+    <div class="diary-container">
+        <!-- Diary Header -->
+        <div class="diary-header">
+            <h1 class="diary-title">📖 Kenangan Kita</h1>
+            <p class="diary-subtitle">Setiap momen bersamamu adalah cerita indah yang ingin kuceritakan</p>
+            <div class="header-icons">
+                <div class="icon-item"><i class="fas fa-heart"></i></div>
+                <div class="icon-item"><i class="fas fa-camera"></i></div>
+                <div class="icon-item"><i class="fas fa-book-open"></i></div>
+                <div class="icon-item"><i class="fas fa-star"></i></div>
+            </div>
+        </div>
+
+        <!-- Memory Entry 1 -->
+        <div class="memory-entry">
+            <div class="entry-date">15 Desember 2023</div>
+            <div class="entry-content">
+                <div class="photo-container">
+                    <div class="placeholder-photo">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <div class="photo-overlay">
+                        <div class="photo-caption">Pertama kali bertemu</div>
+                    </div>
+                </div>
+                <div class="entry-text">
+                    Saat pertama kali melihatmu, hatiku langsung berdebar kencang. Senyumanmu yang hangat membuat dunia terasa lebih indah. Pertemuan sederhana ini mengubah hidupku selamanya.
+                </div>
+                <div class="entry-mood">
+                    <div class="mood-icon">😊</div>
+                    <div class="mood-text">Bahagia dan gugup</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Memory Entry 2 -->
+        <div class="memory-entry">
+            <div class="entry-date">20 Desember 2023</div>
+            <div class="entry-content">
+                <div class="photo-container">
+                    <div class="placeholder-photo">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <div class="photo-overlay">
+                        <div class="photo-caption">Jalan-jalan pertama</div>
+                    </div>
+                </div>
+                <div class="entry-text">
+                    Menghabiskan waktu berjalan-jalan di taman kota. Mendengar tawamu, melihat matamu yang berbinar, dan merasakan kehangatan tanganmu. Setiap langkah bersamamu terasa seperti mimpi.
+                </div>
+                <div class="entry-mood">
+                    <div class="mood-icon">💕</div>
+                    <div class="mood-text">Romantis dan tenang</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Memory Entry 3 -->
+        <div class="memory-entry">
+            <div class="entry-date">25 Desember 2023</div>
+            <div class="entry-content">
+                <div class="photo-container">
+                    <div class="placeholder-photo">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <div class="photo-overlay">
+                        <div class="photo-caption">Natal pertama</div>
+                    </div>
+                </div>
+                <div class="entry-text">
+                    Natal terasa sangat spesial karena dirayakan bersamamu. Melihat kegembiraanmu saat membuka hadiah dan mendengar tawamu yang tulus. Kamu adalah hadiah terindah dalam hidupku.
+                </div>
+                <div class="entry-mood">
+                    <div class="mood-icon">🎄</div>
+                    <div class="mood-text">Penuh cinta dan syukur</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Memory Entry 4 -->
+        <div class="memory-entry">
+            <div class="entry-date">1 Januari 2024</div>
+            <div class="entry-content">
+                <div class="photo-container">
+                    <div class="placeholder-photo">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <div class="photo-overlay">
+                        <div class="photo-caption">Tahun baru bersama</div>
+                    </div>
+                </div>
+                <div class="entry-text">
+                    Mengawali tahun baru bersamamu adalah permulaan yang sempurna. Melihat kembang api bersama dan berjanji untuk selalu ada satu sama lain. Tahun ini akan menjadi yang terbaik.
+                </div>
+                <div class="entry-mood">
+                    <div class="mood-icon">✨</div>
+                    <div class="mood-text">Penuh harapan dan cinta</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="navigation-buttons">
+            <a href="paper.html" class="nav-btn back">
+                <i class="fas fa-arrow-left"></i>
+                Kembali
+            </a>
+            <a href="lagu.html" class="nav-btn next">
+                <i class="fas fa-arrow-right"></i>
+                Selanjutnya
+            </a>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate memory entries on scroll
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observe all memory entries
+            document.querySelectorAll('.memory-entry').forEach(entry => {
+                entry.style.opacity = '0';
+                entry.style.transform = 'translateY(30px)';
+                entry.style.transition = 'all 0.6s ease';
+                observer.observe(entry);
+            });
+
+            // Add click effect to photos
+            document.querySelectorAll('.photo-container').forEach(photo => {
+                photo.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.98)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
