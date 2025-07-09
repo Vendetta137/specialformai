@@ -312,11 +312,11 @@
     <script src="main.js"></script>
     <style>
       .iloveyou {
-        position: absolute;
-        top: 40px;
+        position: fixed;
+        top: 36px;
         left: 50%;
         transform: translateX(-50%);
-        font-size: 3.2rem;
+        font-size: 2.6rem;
         font-family: 'Pacifico', cursive;
         background: linear-gradient(90deg, #ff69b4, #fff700, #00eaff, #ff69b4 80%);
         background-size: 300% 300%;
@@ -324,30 +324,40 @@
         -webkit-text-fill-color: transparent;
         background-clip: text;
         color: transparent;
-        letter-spacing: 0.25em;
-        text-shadow: 0 0 18px #fff, 0 0 32px #ff69b4, 0 0 8px #fff700;
+        letter-spacing: 0.22em;
+        text-shadow: 0 0 14px #fff, 0 0 24px #ff69b4, 0 0 6px #fff700;
         z-index: 1000;
         user-select: none;
         -webkit-user-select: none;
         animation: gradient-move 3s linear infinite, fade-in-zoom 1.2s cubic-bezier(.68,-0.55,.27,1.55) 0.2s both, beat 1.2s infinite alternate;
-        width: 100vw;
+        width: max-content;
+        min-width: 220px;
+        max-width: 92vw;
         text-align: center;
-        left: 0;
-        right: 0;
-        margin: 0 auto;
+        margin-left: auto;
+        margin-right: auto;
+        right: auto;
+        padding: 0.15em 0.5em;
+        box-sizing: border-box;
       }
       @media (max-width: 600px) {
         .iloveyou {
-          font-size: 2rem;
-          top: 24px;
-          letter-spacing: 0.12em;
+          font-size: 1.5rem;
+          top: 18px;
+          letter-spacing: 0.10em;
+          min-width: 140px;
+          padding: 0.12em 0.3em;
+          text-shadow: 0 0 8px #fff, 0 0 14px #ff69b4, 0 0 3px #fff700;
         }
       }
       @media (max-width: 400px) {
         .iloveyou {
-          font-size: 1.2rem;
-          top: 16px;
-          letter-spacing: 0.08em;
+          font-size: 1rem;
+          top: 10px;
+          letter-spacing: 0.06em;
+          min-width: 90px;
+          padding: 0.08em 0.2em;
+          text-shadow: 0 0 4px #fff, 0 0 8px #ff69b4, 0 0 2px #fff700;
         }
       }
 
@@ -362,7 +372,7 @@
       }
       @keyframes beat {
         0% { transform: translateX(-50%) scale(1); }
-        50% { transform: translateX(-50%) scale(1.08); }
+        50% { transform: translateX(-50%) scale(1.09); }
         100% { transform: translateX(-50%) scale(1); }
       }
     </style>
