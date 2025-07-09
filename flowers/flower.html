@@ -342,22 +342,26 @@
       }
       @media (max-width: 600px) {
         .iloveyou {
-          font-size: 1.5rem;
-          top: 18px;
-          letter-spacing: 0.10em;
-          min-width: 140px;
-          padding: 0.12em 0.3em;
-          text-shadow: 0 0 8px #fff, 0 0 14px #ff69b4, 0 0 3px #fff700;
+          font-size: 2.2rem;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          letter-spacing: 0.13em;
+          min-width: 180px;
+          padding: 0.18em 0.5em;
+          text-shadow: 0 0 10px #fff, 0 0 18px #ff69b4, 0 0 4px #fff700;
         }
       }
       @media (max-width: 400px) {
         .iloveyou {
-          font-size: 1rem;
-          top: 10px;
-          letter-spacing: 0.06em;
-          min-width: 90px;
-          padding: 0.08em 0.2em;
-          text-shadow: 0 0 4px #fff, 0 0 8px #ff69b4, 0 0 2px #fff700;
+          font-size: 1.5rem;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          letter-spacing: 0.09em;
+          min-width: 120px;
+          padding: 0.13em 0.3em;
+          text-shadow: 0 0 6px #fff, 0 0 12px #ff69b4, 0 0 3px #fff700;
         }
       }
 
@@ -367,13 +371,13 @@
         100% { background-position: 0% 50%; }
       }
       @keyframes fade-in-zoom {
-        0% { opacity: 0; transform: translateX(-50%) scale(0.7); }
-        100% { opacity: 1; transform: translateX(-50%) scale(1); }
+        0% { opacity: 0; transform: translate(-50%, -50%) scale(0.7); }
+        100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
       }
       @keyframes beat {
-        0% { transform: translateX(-50%) scale(1); }
-        50% { transform: translateX(-50%) scale(1.09); }
-        100% { transform: translateX(-50%) scale(1); }
+        0% { transform: translate(-50%, -50%) scale(1); }
+        50% { transform: translate(-50%, -50%) scale(1.09); }
+        100% { transform: translate(-50%, -50%) scale(1); }
       }
     </style>
   </body>
