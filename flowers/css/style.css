@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,500;1,900&display=swap');
+*{
+    font-family: 'Poppins',cursive;
+    box-sizing: border-box;
+}
+body{
+    color: azure;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    margin: 0;
+    z-index: 1;
+}
+.greetings, .greetings > span {
+    font-family: 'Pacifico', cursive;
+}
+
+.description, .button, .button button, .button a {
+    font-family: 'Poppins', cursive;
+}
+.greetings{
+    font-size: 6rem;
+    font-weight: 900;
+    display: flex;
+    gap: 0.2em;
+    margin-bottom: 0.5em;
+    text-align: center;
+    z-index: 2;
+}
+.greetings > span{
+    animation: pink-glow 2.5s ease-in-out infinite;
+    transition: transform 0.2s;
+    cursor: pointer;
+    -webkit-text-stroke: 2px #fff;
+    text-stroke: 2px #fff;
+    text-shadow:
+        0 0 16px #ff69b4,
+        0 0 32px #ff69b4,
+        0 0 48px #ff69b4,
+        0 2px 8px #000,
+        0 0 2px #fff;
+    color: #fff;
+}
+.greetings > span:hover {
+    transform: scale(1.15) rotate(-5deg);
+    filter: brightness(1.2);
+}
+@keyframes pink-glow {
+    0%, 100% {
+        color: #fff;
+        text-shadow:
+            0 0 16px #ff69b4,
+            0 0 32px #ff69b4,
+            0 0 48px #ff69b4,
+            0 2px 8px #000,
+            0 0 2px #fff;
+    }
+    50% {
+        color: #ff69b4;
+        text-shadow:
+            0 0 32px #ff69b4,
+            0 0 48px #ff69b4,
+            0 0 64px #ff69b4,
+            0 2px 8px #000,
+            0 0 2px #fff;
+    }
+}
+.greetings > span:nth-child(2){ animation-delay: .2s ; }
+.greetings > span:nth-child(3){ animation-delay: .4s ; }
+.greetings > span:nth-child(4){ animation-delay: .6s; }
+.greetings > span:nth-child(5){ animation-delay: .8s; }
+.greetings > span:nth-child(6){ animation-delay: 1s; }
+
+.description{
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color:#fff;
+    text-shadow: 0 0 8px #000, 0 0 4px #ff69b4;
+    opacity: 0;
+    animation: fade-in-up 1.2s 0.5s both;
+    text-align: center;
+    z-index: 2;
+}
+@keyframes fade-in-up {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+.button {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    z-index: 2;
+}
+.button button {
+    background: #ff69b4;
+    color: #fff;
+    border: none;
+    border-radius: 2em;
+    padding: 0.7em 2em;
+    font-size: 1.2rem;
+    font-family: inherit;
+    cursor: pointer;
+    box-shadow: 0 0 16px #ff69b4;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.4s;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    position: relative;
+    z-index: 2;
+}
+.button button:hover {
+    transform: scale(1.08) rotate(-2deg);
+    box-shadow: 0 0 32px #ff69b4;
+    background: #ff69b4;
+    filter: brightness(1.15);
+}
+.button a{
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    letter-spacing: 0.1em;
+}
+@media screen and (max-width:574px){
+    .greetings{
+        display: block;
+        font-size: 3rem;
+        font-weight: 500;
+        text-align: center;
+    }
+    .description{
+        font-size: 1rem;
+    }
+    .button button{
+        font-size: .8rem;
+        padding: 0.5em 1.2em;
+    }
+}
