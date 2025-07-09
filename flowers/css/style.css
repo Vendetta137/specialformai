@@ -138,3 +138,20 @@ body{
         padding: 0.5em 1.2em;
     }
 }
+@media screen and (max-width: 400px) {
+    body {
+        padding: 0 8px;
+    }
+    .greetings {
+        font-size: 2.1rem;
+        margin-bottom: 0.3em;
+    }
+    .description {
+        font-size: 0.95rem;
+        margin-bottom: 12px;
+    }
+    .button button {
+        font-size: 0.7rem;
+        padding: 0.4em 0.8em;
+    }
+}

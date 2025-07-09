@@ -330,6 +330,25 @@
         user-select: none;
         -webkit-user-select: none;
         animation: gradient-move 3s linear infinite, fade-in-zoom 1.2s cubic-bezier(.68,-0.55,.27,1.55) 0.2s both, beat 1.2s infinite alternate;
+        width: 100vw;
+        text-align: center;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+      }
+      @media (max-width: 600px) {
+        .iloveyou {
+          font-size: 2rem;
+          top: 24px;
+          letter-spacing: 0.12em;
+        }
+      }
+      @media (max-width: 400px) {
+        .iloveyou {
+          font-size: 1.2rem;
+          top: 16px;
+          letter-spacing: 0.08em;
+        }
       }
 
       @keyframes gradient-move {
